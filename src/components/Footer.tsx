@@ -1,6 +1,6 @@
 import React from 'react';
 import { playClickSound } from '../utils/audio';
-import { Send, Mail, Share2 } from 'lucide-react';
+import { Send, Mail, Link2 } from 'lucide-react';
 
 interface FooterProps {
   onOpenQuiz: () => void;
@@ -12,23 +12,41 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuiz, onScrollToSection })
     <footer className="w-full bg-[#063D21] border-t-4 border-[#FFE600] py-12 px-4 sm:px-6 lg:px-8 mt-20 text-[#FAF7EC]">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         
-        {/* Left Social & Contact Handles (Matching Screenshot 1 & 4) */}
+        {/* Left Social & Contact Handles */}
         <div className="space-y-3 font-hh-mono text-xs sm:text-sm font-bold uppercase tracking-wider">
-          <div className="flex items-center space-x-3 text-[#FFE600]">
-            <Share2 className="w-4 h-4 text-[#FF007F]" />
-            <span>@247PMSTUDIO</span>
-          </div>
-          <div className="flex items-center space-x-3 text-[#FFE600]">
+          <a
+            href="https://x.com/247pmstudio"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => playClickSound()}
+            className="flex items-center space-x-3 text-[#FFE600] hover:text-[#FF007F] transition-colors"
+          >
+            <Link2 className="w-4 h-4 text-[#FF007F]" />
+            <span>X: HTTPS://X.COM/247PMSTUDIO</span>
+          </a>
+
+          <a
+            href="https://t.me/twofourtysevenpm"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => playClickSound()}
+            className="flex items-center space-x-3 text-[#FFE600] hover:text-[#FF007F] transition-colors"
+          >
             <Send className="w-4 h-4 text-[#FF007F]" />
-            <span>@TWOFOURTYSEVENPM</span>
-          </div>
-          <div className="flex items-center space-x-3 text-[#FFE600]">
+            <span>TELEGRAM: @TWOFOURTYSEVENPM</span>
+          </a>
+
+          <a
+            href="mailto:SATAPATHYPRAYASU@GMAIL.COM"
+            onClick={() => playClickSound()}
+            className="flex items-center space-x-3 text-[#FFE600] hover:text-[#FF007F] transition-colors"
+          >
             <Mail className="w-4 h-4 text-[#FF007F]" />
             <span>SATAPATHYPRAYASU@GMAIL.COM</span>
-          </div>
+          </a>
         </div>
 
-        {/* Right Links & Copyright (Matching Screenshot 1 & 4) */}
+        {/* Right Links & Copyright */}
         <div className="space-y-3 font-hh-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-right md:text-right">
           <div className="flex items-center justify-end space-x-6">
             <a 
@@ -50,8 +68,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuiz, onScrollToSection })
           <div className="text-[#FFE600] pt-2">
             © 2026 HH-GOA. ALL RIGHTS RESERVED.
           </div>
-          <p className="text-[10px] text-amber-200 font-normal">
-            Forge Goa — Official Open Trials Identity Ritual Engine
+          <p className="text-[11px] text-amber-200 font-bold uppercase tracking-widest">
+            MADE BY AUTONOMOUS MINDS
           </p>
         </div>
 
