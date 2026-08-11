@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, Terminal, Sparkles } from 'lucide-react';
+import { Users, Terminal, Sparkles, Link2, MapPin, Building } from 'lucide-react';
 import type { BuilderIdentity } from '../types';
 import { ARCHETYPES } from '../data/archetypes';
 import { playClickSound } from '../utils/audio';
@@ -30,7 +30,7 @@ export const CommunityWall: React.FC<CommunityWallProps> = ({ builders, onSelect
           HALL OF <span className="text-[#FF007F]">FORGED BUILDERS</span>
         </h2>
         <p className="max-w-xl mx-auto text-sm sm:text-base font-hh-mono text-amber-100">
-          Explore newly forged identities across the Hacker House Goa community.
+          Explore newly forged identities. Click any card to view and download their full passport.
         </p>
       </div>
 
@@ -44,7 +44,7 @@ export const CommunityWall: React.FC<CommunityWallProps> = ({ builders, onSelect
               : 'bg-[#0B6638] text-slate-200 border border-[#FFE600]/40 hover:border-[#FFE600]'
           }`}
         >
-          ALL BUILDERS ({builders.length})
+          ALL ({builders.length})
         </button>
 
         {Object.values(ARCHETYPES).map(arch => (
@@ -69,7 +69,7 @@ export const CommunityWall: React.FC<CommunityWallProps> = ({ builders, onSelect
             <div
               key={builder.id}
               onClick={() => { playClickSound(); onSelectBuilder(builder); }}
-              className="bg-[#FAF7EC] text-[#063D21] rounded-2xl p-5 border-3 border-[#063D21] space-y-4 hover:border-[#FF007F] transition-all cursor-pointer group hover:scale-[1.02] shadow-[6px_6px_0px_#FFE600]"
+              className="bg-[#FAF7EC] text-[#063D21] rounded-2xl p-5 border-3 border-[#063D21] space-y-3 hover:border-[#FF007F] transition-all cursor-pointer group hover:scale-[1.02] shadow-[6px_6px_0px_#FFE600]"
             >
               {/* Card Header */}
               <div className="flex items-center justify-between text-[10px] font-hh-mono font-bold">
@@ -82,13 +82,13 @@ export const CommunityWall: React.FC<CommunityWallProps> = ({ builders, onSelect
                 <img
                   src={builder.avatarUrl}
                   alt={builder.name}
-                  className="w-14 h-14 rounded-xl object-cover border-2 border-[#063D21]"
+                  className="w-14 h-14 rounded-full object-cover border-2 border-[#063D21]"
                 />
                 <div className="min-w-0">
-                  <h4 className="font-hh-title font-black text-xl text-[#063D21] truncate uppercase">
+                  <h4 className="font-hh-title font-black text-lg text-[#063D21] truncate uppercase">
                     {builder.name}
                   </h4>
-                  <p className="text-xs font-hh-mono font-bold opacity-80">@{builder.handle}</p>
+                  <p className="text-[11px] font-hh-mono font-bold opacity-70 truncate">@{builder.handle}</p>
                 </div>
               </div>
 
@@ -97,15 +97,37 @@ export const CommunityWall: React.FC<CommunityWallProps> = ({ builders, onSelect
                 {builder.archetypeTitle}
               </div>
 
-              {/* Quote */}
-              <p className="text-xs font-hh-mono italic opacity-90 line-clamp-2">
-                "{builder.archetypeTagline}"
-              </p>
+              {/* College & City */}
+              {(builder.college || builder.city) && (
+                <div className="space-y-0.5 text-[10px] font-hh-mono font-bold text-[#063D21]/80">
+                  {builder.college && (
+                    <div className="flex items-center space-x-1">
+                      <Building className="w-3 h-3 text-[#FF007F]" />
+                      <span className="truncate">{builder.college}</span>
+                    </div>
+                  )}
+                  {builder.city && (
+                    <div className="flex items-center space-x-1">
+                      <MapPin className="w-3 h-3 text-[#FF007F]" />
+                      <span>{builder.city} → GOA</span>
+                    </div>
+                  )}
+                </div>
+              )}
 
-              {/* Stats Bar */}
-              <div className="pt-2 border-t-2 border-[#063D21]/20 flex items-center justify-between text-xs font-hh-mono font-bold">
-                <span>Ship Speed:</span>
-                <span className="text-[#FF007F]">{builder.stats.shipSpeed}/100</span>
+              {/* Social Links */}
+              <div className="flex items-center space-x-2 pt-1 border-t border-[#063D21]/20">
+                {builder.linkedinUrl && (
+                  <a href={builder.linkedinUrl} target="_blank" rel="noopener noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    className="p-1 rounded bg-[#063D21] text-[#FFE600] hover:bg-[#FF007F] transition-colors">
+                    <Link2 className="w-3.5 h-3.5" />
+                  </a>
+                )}
+                <div className="flex-1 flex justify-between text-[10px] font-hh-mono font-bold">
+                  <span>Ship: <span className="text-[#FF007F]">{builder.stats.shipSpeed}</span></span>
+                  <span className="text-[#063D21]/60">Click to view →</span>
+                </div>
               </div>
             </div>
           ))}
@@ -128,7 +150,7 @@ export const CommunityWall: React.FC<CommunityWallProps> = ({ builders, onSelect
         </div>
       )}
 
-      {/* Archetype Showcase Section (Matching Roadmap Chevron Style in Screenshot 3) */}
+      {/* Archetype Showcase */}
       <div id="archetypes" className="pt-12 space-y-8 border-t-4 border-[#FFE600]">
         <div className="text-center space-y-2">
           <div className="inline-flex items-center space-x-2 text-xs font-hh-mono font-bold text-[#FFE600] uppercase">

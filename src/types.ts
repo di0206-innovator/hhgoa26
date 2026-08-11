@@ -10,7 +10,7 @@ export type ArchetypeId =
 
 export type GoaAura = 'Sunset Hacker' | 'Shack Squatter' | 'Scooter Nomad' | 'Night-Owl Waver';
 
-export type FrameTheme = 'sunset_glass' | 'terminal_retro' | 'lanyard_badge';
+export type FrameTheme = 'official_lanyard' | 'boarding_pass' | 'vintage_poster';
 
 export interface Sticker {
   id: string;
@@ -23,7 +23,7 @@ export interface BuilderIdentity {
   id: string;
   serialNumber: string; // e.g. "HHG-2026-#042"
   name: string;
-  handle: string;
+  handle: string; // X/Twitter handle
   avatarUrl: string;
   archetypeId: ArchetypeId;
   archetypeTitle: string;
@@ -42,6 +42,13 @@ export interface BuilderIdentity {
   stickers: Sticker[];
   frameTheme: FrameTheme;
   createdAt: string;
+  // v2 Social & Bio fields
+  linkedinUrl: string;        // LinkedIn profile URL for QR code
+  twitterHandle: string;      // @handle for X/Twitter
+  college: string;            // College / Organization name
+  city: string;               // Home city (FROM field on boarding pass)
+  whatIDo: string;            // Short tagline e.g. "Blockchain, AI, Cybersecurity"
+  currentlyShipping: string;  // "Building the Future" / custom text
 }
 
 export interface Squad {
