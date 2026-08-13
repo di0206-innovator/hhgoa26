@@ -69,6 +69,9 @@ export const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose, onIdentit
   // New v2 fields
   const [linkedinUrl, setLinkedinUrl] = useState('');
   const [twitterHandle, setTwitterHandle] = useState('');
+  const [githubHandle, setGithubHandle] = useState('');
+  const [portfolioUrl, setPortfolioUrl] = useState('');
+  const [discordHandle, setDiscordHandle] = useState('');
   const [college, setCollege] = useState('');
   const [city, setCity] = useState('');
   const [whatIDo, setWhatIDo] = useState('');
@@ -137,7 +140,8 @@ export const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose, onIdentit
           shipSpeed: Math.min(100, arch.baseShipSpeed + Math.floor(Math.random() * 5)),
           coffeeCodeRatio: Math.min(100, arch.baseCoffeeRatio + Math.floor(Math.random() * 5)),
           sunResistance: arch.sunResistance,
-          survivalOdds: Number((97.5 + Math.random() * 2.4).toFixed(1))
+          survivalOdds: Number((97.5 + Math.random() * 2.4).toFixed(1)),
+          vibeScore: 98
         },
         stickers: [SERIOUS_STICKERS[0], MEME_STICKERS[0]],
         frameTheme: 'official_lanyard' as FrameTheme,
@@ -145,11 +149,18 @@ export const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose, onIdentit
         // v2 fields
         linkedinUrl: linkedinUrl.trim(),
         twitterHandle: twitterHandle.trim().replace(/^@/, ''),
+        githubHandle: githubHandle.trim().replace(/^@/, ''),
+        portfolioUrl: portfolioUrl.trim(),
+        discordHandle: discordHandle.trim(),
         college: college.trim() || 'Independent Builder',
         city: city.trim() || 'India',
         whatIDo: whatIDo.trim() || arch.primaryAttribute,
-        currentlyShipping: currentlyShipping.trim() || 'Building the Future'
+        currentlyShipping: currentlyShipping.trim() || 'Building the Future',
+        colorPalette: 'goa_sunset',
+        photoFilter: 'none',
+        qrTarget: linkedinUrl.trim() ? 'linkedin' : twitterHandle.trim() ? 'twitter' : 'linkedin'
       };
+
 
       setIsForging(false);
       playStampSound();
@@ -303,7 +314,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose, onIdentit
                       onChange={e => setLinkedinUrl(e.target.value)}
                       className="w-full px-4 py-3 rounded bg-[#0B6638] border-2 border-[#FFE600] text-white placeholder-amber-200/50 focus:outline-none focus:border-[#FF007F] font-hh-mono text-sm"
                     />
-                    <p className="text-[10px] text-amber-200 font-hh-mono">This generates your QR code. People scan → land on your LinkedIn.</p>
+                    <p className="text-[10px] text-amber-200 font-hh-mono">Generates primary QR code destination.</p>
                   </div>
 
                   <div className="space-y-1.5">
@@ -324,6 +335,50 @@ export const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose, onIdentit
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="text-xs font-hh-mono text-[#FFE600] font-bold uppercase flex items-center space-x-1.5">
+                      <Globe className="w-3.5 h-3.5 text-[#FF007F]" />
+                      <span>GITHUB HANDLE</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. octocat"
+                      value={githubHandle}
+                      onChange={e => setGithubHandle(e.target.value)}
+                      className="w-full px-4 py-3 rounded bg-[#0B6638] border-2 border-[#FFE600] text-white placeholder-amber-200/50 focus:outline-none focus:border-[#FF007F] font-hh-mono text-sm"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-hh-mono text-[#FFE600] font-bold uppercase flex items-center space-x-1.5">
+                      <Globe className="w-3.5 h-3.5 text-[#FF007F]" />
+                      <span>PORTFOLIO / WEBSITE</span>
+                    </label>
+                    <input
+                      type="url"
+                      placeholder="https://yourname.dev"
+                      value={portfolioUrl}
+                      onChange={e => setPortfolioUrl(e.target.value)}
+                      className="w-full px-4 py-3 rounded bg-[#0B6638] border-2 border-[#FFE600] text-white placeholder-amber-200/50 focus:outline-none focus:border-[#FF007F] font-hh-mono text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-hh-mono text-[#FFE600] font-bold uppercase flex items-center space-x-1.5">
+                      <Globe className="w-3.5 h-3.5 text-[#FF007F]" />
+                      <span>DISCORD USERNAME</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="username#0000"
+                      value={discordHandle}
+                      onChange={e => setDiscordHandle(e.target.value)}
+                      className="w-full px-4 py-3 rounded bg-[#0B6638] border-2 border-[#FFE600] text-white placeholder-amber-200/50 focus:outline-none focus:border-[#FF007F] font-hh-mono text-sm"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-hh-mono text-[#FFE600] font-bold uppercase flex items-center space-x-1.5">
                       <Building className="w-3.5 h-3.5 text-[#FF007F]" />
                       <span>COLLEGE / ORGANIZATION</span>
                     </label>
@@ -335,7 +390,9 @@ export const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose, onIdentit
                       className="w-full px-4 py-3 rounded bg-[#0B6638] border-2 border-[#FFE600] text-white placeholder-amber-200/50 focus:outline-none focus:border-[#FF007F] font-hh-mono text-sm"
                     />
                   </div>
+                </div>
 
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="text-xs font-hh-mono text-[#FFE600] font-bold uppercase flex items-center space-x-1.5">
                       <MapPin className="w-3.5 h-3.5 text-[#FF007F]" />

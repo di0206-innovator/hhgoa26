@@ -159,3 +159,21 @@ export const PRESET_AVATARS = [
   'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><defs><linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23F59E0B"/><stop offset="100%" stop-color="%23EF4444"/></linearGradient></defs><rect width="200" height="200" rx="40" fill="url(%23g4)"/><circle cx="100" cy="80" r="35" fill="%23000" opacity="0.25"/><circle cx="100" cy="75" r="30" fill="%23FFF"/><path d="M45,165 C45,120 155,120 155,165" fill="%23FFF"/></svg>',
   'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><defs><linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23EC4899"/><stop offset="100%" stop-color="%238A2BE2"/></linearGradient></defs><rect width="200" height="200" rx="40" fill="url(%23g5)"/><circle cx="100" cy="80" r="35" fill="%23000" opacity="0.25"/><circle cx="100" cy="75" r="30" fill="%23FFF"/><path d="M45,165 C45,120 155,120 155,165" fill="%23FFF"/></svg>'
 ];
+
+export const COLOR_PALETTES = [
+  { id: 'goa_sunset', label: 'Goa Sunset', primary: '#FFE600', secondary: '#FF007F', bg: '#0B6638', text: '#063D21' },
+  { id: 'cyber_pink', label: 'Cyber Pink', primary: '#FF007F', secondary: '#00F2FE', bg: '#1A0B2E', text: '#FFFFFF' },
+  { id: 'neon_mint', label: 'Neon Mint', primary: '#00FF9D', secondary: '#7928CA', bg: '#051911', text: '#00FF9D' },
+  { id: 'solar_gold', label: 'Solar Gold', primary: '#FFB800', secondary: '#FF4D00', bg: '#1E1500', text: '#FFB800' },
+  { id: 'deep_emerald', label: 'Deep Emerald', primary: '#10B981', secondary: '#3B82F6', bg: '#022C22', text: '#ECFDF5' },
+  { id: 'electric_blue', label: 'Electric Blue', primary: '#38BDF8', secondary: '#818CF8', bg: '#0F172A', text: '#F0F9FF' }
+] as const;
+
+export const PHOTO_FILTERS = [
+  { id: 'none', label: 'Original', css: 'none' },
+  { id: 'cyber_glow', label: 'Cyber Glow', css: 'contrast(125%) brightness(110%) saturate(150%) hue-rotate(15deg)' },
+  { id: 'sunset_warmth', label: 'Sunset Warmth', css: 'sepia(35%) contrast(115%) saturate(140%)' },
+  { id: 'retro_sepia', label: 'Vintage Film', css: 'sepia(70%) contrast(90%) brightness(105%)' },
+  { id: 'neon_contrast', label: 'High Contrast B&W', css: 'grayscale(100%) contrast(160%) brightness(105%)' }
+] as const;
+

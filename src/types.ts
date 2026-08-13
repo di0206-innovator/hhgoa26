@@ -10,12 +10,18 @@ export type ArchetypeId =
 
 export type GoaAura = 'Sunset Hacker' | 'Shack Squatter' | 'Scooter Nomad' | 'Night-Owl Waver';
 
-export type FrameTheme = 'official_lanyard' | 'boarding_pass' | 'vintage_poster';
+export type FrameTheme = 'official_lanyard' | 'boarding_pass' | 'vintage_poster' | 'cyber_neon';
+
+export type ColorPalette = 'goa_sunset' | 'cyber_pink' | 'neon_mint' | 'solar_gold' | 'deep_emerald' | 'electric_blue';
+
+export type PhotoFilter = 'none' | 'cyber_glow' | 'sunset_warmth' | 'retro_sepia' | 'neon_contrast';
+
+export type QrTarget = 'linkedin' | 'twitter' | 'github' | 'portfolio' | 'custom';
 
 export interface Sticker {
   id: string;
   label: string;
-  category: 'serious' | 'meme';
+  category: 'serious' | 'meme' | 'custom';
   color: string;
 }
 
@@ -38,6 +44,7 @@ export interface BuilderIdentity {
     coffeeCodeRatio: number; // 0 - 100%
     sunResistance: string; // "Low" | "Moderate" | "Immunity"
     survivalOdds: number; // e.g. 99.4%
+    vibeScore?: number; // 0 - 100% custom 4th stat
   };
   stickers: Sticker[];
   frameTheme: FrameTheme;
@@ -45,10 +52,18 @@ export interface BuilderIdentity {
   // v2 Social & Bio fields
   linkedinUrl: string;        // LinkedIn profile URL for QR code
   twitterHandle: string;      // @handle for X/Twitter
+  githubHandle?: string;     // @handle for GitHub
+  portfolioUrl?: string;     // Personal website/portfolio
+  discordHandle?: string;    // Discord username
   college: string;            // College / Organization name
   city: string;               // Home city (FROM field on boarding pass)
   whatIDo: string;            // Short tagline e.g. "Blockchain, AI, Cybersecurity"
   currentlyShipping: string;  // "Building the Future" / custom text
+  // Card Customizations
+  colorPalette?: ColorPalette;
+  photoFilter?: PhotoFilter;
+  qrTarget?: QrTarget;
+  customQrUrl?: string;
 }
 
 export interface Squad {
@@ -59,3 +74,4 @@ export interface Squad {
   totalShipSpeed: number;
   synergyPerk: string;
 }
+

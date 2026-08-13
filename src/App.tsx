@@ -3,13 +3,15 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { QuizModal } from './components/QuizModal';
 import { BuilderCard } from './components/BuilderCard';
-import { StickerCustomizer } from './components/StickerCustomizer';
+import { CardEditorPanel } from './components/CardEditorPanel';
 import { SquadPoster } from './components/SquadPoster';
 import { CommunityWall } from './components/CommunityWall';
 import { Footer } from './components/Footer';
-import type { BuilderIdentity, Sticker } from './types';
+import type { BuilderIdentity } from './types';
 import { playClickSound } from './utils/audio';
 import { Sparkles, RefreshCw, PlusCircle } from 'lucide-react';
+
+
 
 const STORAGE_KEYS = {
   USER_IDENTITY: 'forge_goa_user_identity',
@@ -92,15 +94,6 @@ export function App() {
     });
   };
 
-  const handleUpdateIdentityStickers = (newStickers: Sticker[]) => {
-    if (userIdentity) {
-      const updated = { ...userIdentity, stickers: newStickers };
-      setUserIdentity(updated);
-      setCommunityBuilders(prev => prev.map(b => b.id === updated.id ? updated : b));
-      setSquadMembers(prev => prev.map(m => m.id === updated.id ? updated : m));
-    }
-  };
-
   const handleAddToSquad = (identity: BuilderIdentity) => {
     if (squadMembers.length < 4 && !squadMembers.some(m => m.id === identity.id)) {
       setSquadMembers([...squadMembers, identity]);
@@ -159,7 +152,7 @@ export function App() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
               {/* Card Canvas Left Column */}
-              <div className="lg:col-span-6">
+              <div className="lg:col-span-6 space-y-6">
                 <BuilderCard
                   identity={userIdentity}
                   onUpdateIdentity={setUserIdentity}
@@ -167,11 +160,11 @@ export function App() {
                 />
               </div>
 
-              {/* Sticker Customizer & Actions Right Column */}
+              {/* Live Quick-Edit & Customizer Panel Right Column */}
               <div className="lg:col-span-6 space-y-6">
-                <StickerCustomizer
+                <CardEditorPanel
                   identity={userIdentity}
-                  onUpdateStickers={handleUpdateIdentityStickers}
+                  onUpdateIdentity={setUserIdentity}
                 />
 
                 {/* Re-forge Button */}
