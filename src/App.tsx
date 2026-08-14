@@ -151,8 +151,8 @@ export function App() {
           {userIdentity ? (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
-              {/* Card Canvas Left Column */}
-              <div className="lg:col-span-6 space-y-6">
+              {/* Card Canvas Left Column (Sticky on Desktop Viewports) */}
+              <div className="lg:col-span-6 space-y-6 lg:sticky lg:top-24 z-20">
                 <BuilderCard
                   identity={userIdentity}
                   onUpdateIdentity={setUserIdentity}

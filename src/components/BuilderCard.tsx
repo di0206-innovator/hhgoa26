@@ -4,7 +4,7 @@ import { QRCodeSVG } from 'qrcode.react';
 
 import type { BuilderIdentity, FrameTheme } from '../types';
 import { PHOTO_FILTERS } from '../data/archetypes';
-import { downloadCardAsPng, copySocialShareText } from '../utils/export';
+import { downloadCardAsPng, copySocialShareText, getTwitterShareUrl, getLinkedInShareUrl } from '../utils/export';
 import { playClickSound, playChimeSound } from '../utils/audio';
 
 interface BuilderCardProps {
@@ -690,18 +690,40 @@ export const BuilderCard: React.FC<BuilderCardProps> = ({ identity, onUpdateIden
       </div>
 
       {/* Action Controls */}
-      <div className="flex flex-col sm:flex-row items-center gap-3">
+      <div className="flex flex-col sm:flex-row items-center gap-2.5">
         <button onClick={handleDownload} disabled={isExporting}
-          className="w-full sm:w-1/2 px-5 py-3 bg-[#FFE600] hover:bg-[#FF007F] text-[#063D21] hover:text-white font-hh-title font-black text-sm uppercase tracking-wider border-2 border-black shadow-[4px_4px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center space-x-2">
+          className="w-full sm:w-1/2 px-4 py-3 bg-[#FFE600] hover:bg-[#FF007F] text-[#063D21] hover:text-white font-hh-title font-black text-xs sm:text-sm uppercase tracking-wider border-2 border-black shadow-[4px_4px_0px_#000000] hover:translate-x-[1px] hover:translate-y-[1px] transition-all flex items-center justify-center space-x-2">
           <Download className="w-4 h-4" />
-          <span>{isExporting ? 'EXPORTING...' : 'DOWNLOAD CARD'}</span>
+          <span>{isExporting ? 'EXPORTING 3X PNG...' : 'DOWNLOAD 3X PNG'}</span>
         </button>
 
         <button onClick={handleShareText}
-          className="w-full sm:w-1/2 px-5 py-3 bg-[#063D21] hover:bg-[#12844C] text-[#FFE600] font-hh-mono font-bold text-xs uppercase tracking-wider border-2 border-[#FFE600] shadow-[4px_4px_0px_#000000] transition-all flex items-center justify-center space-x-2">
+          className="w-full sm:w-1/2 px-4 py-3 bg-[#063D21] hover:bg-[#12844C] text-[#FFE600] font-hh-mono font-bold text-xs uppercase tracking-wider border-2 border-[#FFE600] shadow-[4px_4px_0px_#000000] transition-all flex items-center justify-center space-x-2">
           {copiedText ? <Check className="w-4 h-4 text-[#FFE600]" /> : <Share2 className="w-4 h-4 text-[#FF007F]" />}
           <span>{copiedText ? 'COPIED!' : 'COPY SHARE TEXT'}</span>
         </button>
+      </div>
+
+      {/* Direct Social Media Share Buttons */}
+      <div className="grid grid-cols-2 gap-2 font-hh-mono text-xs">
+        <a
+          href={getTwitterShareUrl(identity)}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={playClickSound}
+          className="py-2.5 px-3 bg-black hover:bg-slate-900 text-white font-bold rounded-xl border border-slate-700 text-center flex items-center justify-center space-x-1.5 shadow"
+        >
+          <span>🐦 SHARE ON X</span>
+        </a>
+        <a
+          href={getLinkedInShareUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={playClickSound}
+          className="py-2.5 px-3 bg-[#0A66C2] hover:bg-[#084e96] text-white font-bold rounded-xl border border-blue-400 text-center flex items-center justify-center space-x-1.5 shadow"
+        >
+          <span>💼 SHARE LINKEDIN</span>
+        </a>
       </div>
 
       {/* Add to Squad */}

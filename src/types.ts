@@ -18,6 +18,8 @@ export type PhotoFilter = 'none' | 'cyber_glow' | 'sunset_warmth' | 'retro_sepia
 
 export type QrTarget = 'linkedin' | 'twitter' | 'github' | 'portfolio' | 'custom';
 
+export type SocialExportFormat = 'badge_3_4' | 'story_9_16' | 'feed_1_1' | 'social_16_9';
+
 export interface Sticker {
   id: string;
   label: string;
@@ -64,6 +66,7 @@ export interface BuilderIdentity {
   photoFilter?: PhotoFilter;
   qrTarget?: QrTarget;
   customQrUrl?: string;
+  exportFormat?: SocialExportFormat;
 }
 
 export interface Squad {

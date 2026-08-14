@@ -52,13 +52,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuiz, onExploreArchetypes, for
         {/* Iconic HH Goa Title Block (Matching Screenshot 1 & 4) */}
         <div className="relative py-4 select-none">
           {/* Giant Serif Yellow Title */}
-          <h1 className="font-hh-title font-black text-6xl sm:text-8xl lg:text-9xl text-[#FFE600] tracking-tight leading-none uppercase drop-shadow-[6px_6px_0px_#042E18]">
+          <h1 className="font-hh-title font-black text-5xl sm:text-8xl lg:text-9xl text-[#FFE600] tracking-tight leading-none uppercase drop-shadow-[6px_6px_0px_#042E18]">
             HACKER<br />HOUSE
           </h1>
           
           {/* Overlaid Hot Pink Hindi गोवा Badge (Exact match from Screenshot 1 & 4) */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-6deg] z-20">
-            <span className="font-hh-hindi font-black text-5xl sm:text-7xl lg:text-8xl text-[#FF007F] px-6 py-1 bg-[#FFE600] border-4 border-black shadow-[6px_6px_0px_#000000] inline-block tracking-widest">
+            <span className="font-hh-hindi font-black text-4xl sm:text-7xl lg:text-8xl text-[#FF007F] px-4 py-0.5 sm:px-6 sm:py-1 bg-[#FFE600] border-3 sm:border-4 border-black shadow-[4px_4px_0px_#000000] sm:shadow-[6px_6px_0px_#000000] inline-block tracking-widest">
               गोवा
             </span>
           </div>
